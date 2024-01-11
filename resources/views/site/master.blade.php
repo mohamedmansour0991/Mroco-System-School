@@ -16,7 +16,7 @@
 
 
     <!-- Navbar Start -->
-      {{-- @include('site.navbar') --}}
+      @include('site.navbar')
     <!-- Navbar End -->
 
 

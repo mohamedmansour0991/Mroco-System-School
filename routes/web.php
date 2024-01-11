@@ -53,7 +53,7 @@ Route::get('language/{locale}', function ($locale) {
     return redirect()->back();
 })->name('language');
 
-Route::get('login', [AuthController::class , 'showLoginForm'])->name('login');
+// Route::get('login', [AuthController::class , 'showLoginForm'])->name('login');
 
 
 Route::prefix('admin')->middleware('localization')->name('admin.')->group(function () {
