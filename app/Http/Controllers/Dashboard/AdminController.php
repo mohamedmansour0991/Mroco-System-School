@@ -73,8 +73,11 @@ class AdminController extends Controller
          $data['email_verified_at'] =  now() ;
          $data['remember_token'] = Str::random(10) ;
 
-        if ($request->hasFile('img')) {
-            $data['img'] = $request->file('img')->store('admins');
+         if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $fileName = uniqid('admin_') . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('admins', $fileName,'public');
+            $data['img'] = $filePath;
         }
 
         $admin =$this->adminRepo->create($data);

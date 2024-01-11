@@ -92,8 +92,10 @@ class CourseController extends Controller
           if ($request->hasFile('img')) {
 
             Storage::delete($course->img);
-
-            $data['img'] = $request->file('img')->store('courses');
+            $file = $request->file('img');
+            $fileName = uniqid('course_') . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('courses', $fileName,'public');
+            $data['img'] = $filePath;
 
         } else {
             $data['img'] = $course->img;

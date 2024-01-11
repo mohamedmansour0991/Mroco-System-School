@@ -54,7 +54,13 @@ class StudentController extends Controller
 
        $data = $request->except('img');
         if ($request->hasFile('img')) {
-            $data['img'] = $request->file('img')->store('admins');
+          
+
+            $file = $request->file('img');
+            $fileName = uniqid('admin_') . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('admins', $fileName,'public');
+            $data['img'] = $filePath;
+            
         }
 
 
@@ -85,7 +91,10 @@ class StudentController extends Controller
 
             Storage::delete($admin->img);
 
-            $data['img'] = $request->file('img')->store('admins');
+            $file = $request->file('img');
+            $fileName = uniqid('admin_') . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('admins', $fileName,'public');
+            $data['img'] = $filePath;
 
         } else {
             $data['img'] = $admin->img;

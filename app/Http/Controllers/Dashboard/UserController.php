@@ -66,8 +66,10 @@ class UserController extends Controller
           if ($request->hasFile('img')) {
 
             Storage::delete($user->img);
-
-            $data['img'] = $request->file('img')->store('users');
+            $file = $request->file('img');
+            $fileName = uniqid('users_') . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('users', $fileName,'public');
+            $data['img'] = $filePath;
 
         } else {
             $data['img'] = $user->img;

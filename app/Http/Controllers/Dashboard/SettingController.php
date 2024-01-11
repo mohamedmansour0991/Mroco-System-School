@@ -39,7 +39,10 @@ class SettingController extends Controller
             if( $setting->logo){
                 Storage::delete($setting->logo);
             }
-            $data['logo'] = $request->file('logo')->store('settings');
+            $file = $request->file('logo');
+            $fileName = uniqid('setting_') . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('settings', $fileName,'public');
+            $data['logo'] = $filePath;
 
         } else {
             $data['logo'] = $setting->logo;
@@ -66,7 +69,11 @@ class SettingController extends Controller
             if( $static->img){
                 Storage::delete($static->img1);
             }
-            $data['img1'] = $request->file('img1')->store('statics');
+
+            $file = $request->file('img1');
+            $fileName = uniqid('statics_') . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('statics', $fileName,'public');
+            $data['img1'] = $filePath;
 
         } else {
             $data['img1'] = $static->img1;
@@ -76,7 +83,11 @@ class SettingController extends Controller
             if( $static->img){
                 Storage::delete($static->img2);
             }
-            $data['img2'] = $request->file('img2')->store('statics');
+
+            $file = $request->file('img2');
+            $fileName = uniqid('statics_') . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('statics', $fileName,'public');
+            $data['img2'] = $filePath;
 
         } else {
             $data['img2'] = $static->img2;
