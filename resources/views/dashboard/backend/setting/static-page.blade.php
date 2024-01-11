@@ -10,7 +10,7 @@
 @section('content')
 
 
-<div class="col-xxl-6">
+<div class="col-xxl-12">
     <div class="card">
 
         <!-- start page title -->
