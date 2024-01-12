@@ -141,7 +141,7 @@
                             </p>
                         </div>
                     </div>
-                    <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="{{ url('user/login') }}">Read More</a>
                 </div>
             </div>
         </div>
